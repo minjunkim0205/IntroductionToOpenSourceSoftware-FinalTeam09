@@ -44,6 +44,19 @@ Repositorie Radar는 **Streamlit 기반 인터페이스**를 활용하여 누구
 streamlit run Home.py
 ```
 
+### 브랜치 규칙
+
+```text
+Git Branch Structure
+├── master                # 제품(프로덕션) 배포용 브랜치
+│
+├── develop               # 개발 통합 브랜치 (feature 브랜치들이 여기로 merge됨)
+│
+└── feature/              # 기능 단위 작업 브랜치 (개발자 개인 작업 영역)
+    ├── feature/github_file_tree
+    └── feature/{기능명}  # 새로운 기능 추가 시 생성
+```
+
 ### 파일 구조
 
 ```text
