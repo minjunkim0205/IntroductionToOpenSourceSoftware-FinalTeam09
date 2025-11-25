@@ -4,6 +4,7 @@
 # Import module
 # ---------------------------------------------------
 import streamlit as st
+import module.github as github
 
 # ---------------------------------------------------
 # Streamlit config
@@ -27,8 +28,14 @@ api_token = st.sidebar.text_input("GPT/Gemini API token", value=st.session_state
 repository_url = st.sidebar.text_input("Github repository url", value=st.session_state["repository_url"])
 
 if st.sidebar.button("Save"):
-    st.session_state["api_token"] = api_token
-    st.session_state["repository_url"] = repository_url
+    if True:
+        st.session_state["api_token"] = api_token
+    else:
+        st.sidebar.error("잘못된 API 토큰")
+    if github.url_check(repository_url):
+        st.session_state["repository_url"] = repository_url
+    else:
+        st.sidebar.error("잘못된 Repository 링크")
 
 # ---------------------------------------------------
 # Home Page
