@@ -54,6 +54,6 @@ repository_url = st.session_state.get("repository_url", "")
 # Check input
 # ---------------------------------------------------
 if api_token and repository_url:
-    st.success("GitHub URL과 API Token이 확인되었습니다. 왼쪽 메뉴에서 분석 페이지로 이동하세요!")
+    st.success("GitHub URL과 API Token이 확인되었습니다. 왼쪽 사이드바에서 분석 페이지로 이동하세요!")
 else:
     st.error("API Token 과 GitHub URL를 입력해야 합니다.")
