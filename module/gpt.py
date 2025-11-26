@@ -16,12 +16,14 @@ def api_check(_key:str) -> bool:
             messages=[
                 {
                     "role": "system", 
+                    # 반드시 영어로 대답 해야합니다.
                     "content": (
                         "You must answer in English."
                     )
                 },
                 {
                     "role": "user", 
+                    # 핑
                     "content": (
                         "ping"
                     )
@@ -43,6 +45,8 @@ def api_repository_structure(_key:str, _file_tree:dict, _language:str="Korean") 
             messages=[
                 {
                     "role": "system", 
+                    # 당신은 코드 분석을 도와주는 전문 어시스트 입니다.
+                    # 반드시 {_language}로 대답 해야합니다.
                     "content": (
                         "You are an assistant who specializes in analyzing code."
                         "You must answer in "+_language+"."
