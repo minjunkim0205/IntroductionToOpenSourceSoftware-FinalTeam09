@@ -1,35 +1,32 @@
+# module/gemini.py
+
 # ---------------------------------------------------
 # Import module
-# 설치 필요 : pip install google-genai
 # ---------------------------------------------------
 from google import genai
 
-
 # ---------------------------------------------------
-# Function : 기능
+# Function
 # ---------------------------------------------------
-def api_check(api_key: str) -> bool:
-    """
-    Gemini API 키 유효성 검사 (아주 단순 버전)
-    """
+def api_check(_key: str) -> bool:
+    client = genai.Client(api_key=_key)
     try:
-        client = genai.Client(api_key=api_key)
         client.models.generate_content(
             model="gemini-2.5-flash",
             contents="hello"
         )
+        # print("where is response msg?")
         return True
-    except Exception:
+    except Exception as e:
+        # print(e)
         return False
 
-
 # ---------------------------------------------------
-# Test : 결과 확인
+# Test
 # ---------------------------------------------------
 if __name__ == "__main__":
-    key = input("Your Gemini API Key >> ").strip()
-
+    key = str(input("Your Gemini API Key >> "))
     if api_check(key):
-        print("✔ API Key is valid!")
+        print("Success", end="")
     else:
-        print("❌ Invalid API Key!")
+        print("Error", end="")
