@@ -10,20 +10,20 @@ import module.gpt as gpt
 # ---------------------------------------------------
 # Get session state
 # ---------------------------------------------------
-api_token = st.session_state.get("api_token", "")
+api_key = st.session_state.get("api_key", "")
 repository_url = st.session_state.get("repository_url", "")
 
 # ---------------------------------------------------
 # Sidebar(API,URL input)
 # ---------------------------------------------------
 st.sidebar.title("Input")
-api_token = st.sidebar.text_input("GPT/Gemini API token", value=api_token, type="password", disabled=True)
+api_key = st.sidebar.text_input("GPT/Gemini API token", value=api_key, type="password", disabled=True)
 repository_url = st.sidebar.text_input("Github repository url", value=repository_url, disabled=True)
 
 # ---------------------------------------------------
 # Page
 # ---------------------------------------------------
-if not (api_token and repository_url):
+if not (api_key and repository_url):
     st.error("API Token 과 GitHub URL를 입력해야 이 페이지를 이용할 수 있습니다.")
     st.stop()
 
@@ -34,4 +34,4 @@ st.header("📊Repository Structure")
 st.code(github.url_tree_string(repository_url)) 
 
 st.header("AI Comment")
-st.write(gpt.api_repository_structure(api_token, github.url_tree_dict(repository_url)))
+st.write(gpt.api_repository_structure(api_key, github.url_tree_dict(repository_url)))
