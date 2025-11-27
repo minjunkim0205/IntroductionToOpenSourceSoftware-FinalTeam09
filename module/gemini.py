@@ -50,6 +50,9 @@ def api_repository_structure(_key:str, _file_tree:dict, _language:str="English")
         return str(response.text)
     except Exception as e:
         return str(e)
+    
+def api_environment_setup(_key:str, _file_tree:dict, _readme:str, _language:str="English") -> str:
+    return "Error"
 
 # ---------------------------------------------------
 # Test

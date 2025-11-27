@@ -1,3 +1,5 @@
+# 01_📊RepositoryStructure.py
+
 # ---------------------------------------------------
 # Import module
 # ---------------------------------------------------
@@ -38,13 +40,14 @@ st.header("File Tree")
 
 file_tree = contents["01"]["File Tree"]
 
-if not file_tree:
-    file_tree = github.url_tree_string(repository_url)
-    contents["01"]["File Tree"] = file_tree
-    st.session_state["contents"] = contents
+with st.spinner("Wait for it...", show_time=True):
+    if not file_tree:
+        file_tree = github.url_tree_string(repository_url)
+        contents["01"]["File Tree"] = file_tree
+        st.session_state["contents"] = contents
 
-with st.expander("📁 파일 트리 보기/접기", expanded=True):
-    st.code(file_tree, line_numbers=True)
+    with st.expander("📁 파일 트리 보기/접기", expanded=True):
+        st.code(file_tree, line_numbers=True)
 
 # ---------------------------------------------------
 # AI Comment
@@ -55,13 +58,13 @@ ai_comment = contents["01"]["AI Comment"]
 api_type = options["api_type"]
 language = options["language"]
 
-if not ai_comment:
-    if api_type == "GPT":
-        ai_comment = gpt.api_repository_structure(api_key, github.url_tree_dict(repository_url), language)
-    elif api_type == "GEMINI":
-        ai_comment = gemini.api_repository_structure(api_key, github.url_tree_dict(repository_url), language)
+with st.spinner("Wait for it...", show_time=True):
+    if not ai_comment:
+        if api_type == "GPT":
+            ai_comment = gpt.api_repository_structure(api_key, github.url_tree_dict(repository_url), language)
+        elif api_type == "GEMINI":
+            ai_comment = gemini.api_repository_structure(api_key, github.url_tree_dict(repository_url), language)
 
-    contents["01"]["AI Comment"] = ai_comment
-    st.session_state["contents"] = contents
-
-st.write(ai_comment)
+        contents["01"]["AI Comment"] = ai_comment
+        st.session_state["contents"] = contents
+    st.write(ai_comment)
